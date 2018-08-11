@@ -10,7 +10,7 @@ ENV PATH /opt/conda/bin:$PATH
 WORKDIR /home
 
 RUN apt-get -qq update && apt-get -qqy dist-upgrade
-RUN apt-get -qqy install make git vim bash
+RUN apt-get -qqy install make git vim bash mc
 
 RUN apt-get update --fix-missing && \
     apt-get install -y wget bzip2 ca-certificates curl git && \
@@ -24,6 +24,8 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
     ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
     echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
     echo "conda activate base" >> ~/.bashrc
+
+RUN /opt/conda/bin/conda update -y --all -n base  &&  /opt/conda/bin/conda clean -tipsy
 
 ENV TINI_VERSION v0.16.1
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
