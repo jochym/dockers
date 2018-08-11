@@ -1,4 +1,4 @@
-OCFROM debian:stable
+FROM debian:stable
 #  $ docker build . -t continuumio/miniconda3:latest -t continuumio/miniconda3:4.5.4
 #  $ docker run --rm -it continuumio/miniconda3:latest /bin/bash
 #  $ docker push continuumio/miniconda3:latest
