@@ -25,9 +25,15 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
     echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
     echo "conda activate base" >> ~/.bashrc
 
-RUN /opt/conda/bin/conda config --system --add channels conda-forge
+RUN /opt/conda/bin/conda update -y --all -n base
 RUN /opt/conda/bin/conda install -y -n base conda-build
-RUN /opt/conda/bin/conda update -y --all -n base  &&  /opt/conda/bin/conda clean -tipsy
+RUN /opt/conda/bin/conda create -n bld python=3.6 conda-build
+RUN /opt/conda/bin/conda create -n cfbld -c conda-forge python=3.6 conda-build
+RUN /opt/conda/bin/conda config -n cfbld--env --add channels conda-forge
+
+RUN /opt/conda/bin/conda update -y --all -n bld
+RUN /opt/conda/bin/conda update -y --all -n cfbld
+RUN /opt/conda/bin/conda clean -tipsy
 
 ENV TINI_VERSION v0.16.1
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
