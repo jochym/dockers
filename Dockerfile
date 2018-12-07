@@ -6,7 +6,6 @@ WORKDIR /home
 
 RUN apt-get -qq update && apt-get -qqy dist-upgrade
 RUN apt-get -qqy install make git vim bash mc wget bzip2 psmisc screen less
-RUN apt-get -qqy install nis ssh-server nfs torque-mom mpich2 isc-dhcp-client
 RUN apt-get -qqy install live-build
 
 RUN apt-get clean 
