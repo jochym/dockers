@@ -26,7 +26,7 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
     echo "conda activate base" >> ~/.bashrc
 
 RUN /opt/conda/bin/conda update -y --all -n base
-RUN /opt/conda/bin/conda install -y -n base conda-build
+RUN /opt/conda/bin/conda install -y -n base conda-build anaconda-client
 
 RUN /opt/conda/bin/conda create -n bld python=3.6 conda-build
 RUN /opt/conda/bin/conda update -y --all -n bld
