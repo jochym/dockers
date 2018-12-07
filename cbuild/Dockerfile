@@ -8,7 +8,8 @@ RUN conda update -y --all
 RUN conda create -n cfbld -c conda-forge python=3.6 conda-build ase spglib
 RUN conda create -n bld python=3.6 conda-build
 RUN source /opt/conda/etc/profile.d/conda.sh && \
-    /opt/conda/bin/conda activate cfbld && \
-    /opt/conda/bin/conda config --env --add channels conda-forge
+    conda activate cfbld && \
+    conda config --env --add channels conda-forge && \
+    conda update --all
 RUN conda env list
 RUN conda clean -tipsy
