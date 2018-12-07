@@ -29,7 +29,9 @@ RUN /opt/conda/bin/conda update -y --all -n base
 RUN /opt/conda/bin/conda install -y -n base conda-build
 RUN /opt/conda/bin/conda create -n bld python=3.6 conda-build
 RUN /opt/conda/bin/conda create -n cfbld -c conda-forge python=3.6 conda-build
-RUN /opt/conda/bin/conda activate cfbld && /opt/conda/bin/conda config --env --add channels conda-forge
+RUN source /opt/conda/etc/profile.d/conda.sh && \
+    /opt/conda/bin/conda activate cfbld && \
+    /opt/conda/bin/conda config --env --add channels conda-forge
 
 RUN /opt/conda/bin/conda update -y --all -n bld
 RUN /opt/conda/bin/conda update -y --all -n cfbld
