@@ -14,5 +14,6 @@ dependencies:
   - tqdm
   - click
   - spglib
+  - quarto
 
 
